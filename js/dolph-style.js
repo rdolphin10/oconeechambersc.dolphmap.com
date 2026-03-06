@@ -411,7 +411,7 @@ function addCountyBorder(map) {
                     'line-color': config.lineColor || DOLPH_COLORS.countyLines,
                     'line-width': config.lineWidth || 2.5,
                     'line-opacity': config.lineOpacity || 0.7,
-                    'line-dasharray': [3, 2]
+                    'line-dasharray': config.lineDasharray || [3, 2]
                 }
             });
         })

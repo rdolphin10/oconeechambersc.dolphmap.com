@@ -160,7 +160,11 @@ const CONFIG = {
         "geojsonPath": "assets/oconee-county-boundary.geojson",
         "lineColor": "#061550",
         "lineWidth": 3,
-        "lineOpacity": 0.7
+        "lineOpacity": 0.7,
+        "lineDasharray": [
+            1,
+            0
+        ]
     }
 };
 

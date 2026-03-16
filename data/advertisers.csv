@@ -1,7 +1,7 @@
 name,address,city,state,zip,phone,website,category,description,latitude,longitude,popup_image,banner_image,banner_type
 Oconee County Chamber of Commerce,2 Leas Courtyard Dr,Seneca,SC,29672,(864) 882-2097,https://oconeechambersc.org/,Chamber of Commerce,Serving the businesses and communities of Oconee County including Seneca Walhalla and Westminster since 2017,34.6857,-82.9532,,,none
 Drizzle on the Alley,,Seneca,SC,,,,Restaurant,Sample Oconee advertiser listing for map demonstration.,34.6865,-82.9539,assets/popup-images/DrizzleontheAlley.jpg,,
-Duke Energy,,Seneca,SC,,,,Utilities,Sample Oconee advertiser listing for map demonstration.,34.6905,-82.9820,assets/popup-images/DukeEnergy.jpg,,
+Duke Energy,,Seneca,SC,,(864) 873 - 4600,https://duke-energy.com,Utilities,Sample Oconee advertiser listing for map demonstration.,34.6905,-82.9820,assets/popup-images/DukeEnergy.jpg,,
 Foxwood Hills,,Westminster,SC,,,,Community,Sample Oconee advertiser listing for map demonstration.,34.7275,-83.0750,assets/popup-images/FoxwoodHills.jpg,,
 New Leaf Cleaning,,Walhalla,SC,,,,Professional Services,Sample Oconee advertiser listing for map demonstration.,34.7640,-83.0648,assets/popup-images/NewLeafCleaning.jpg,,
 Peace of the Pie,,Fair Play,SC,,,,Restaurant,Sample Oconee advertiser listing for map demonstration.,34.5125,-83.0125,assets/popup-images/PeaceofthePie.jpg,,

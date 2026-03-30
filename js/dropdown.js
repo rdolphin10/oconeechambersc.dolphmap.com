@@ -11,6 +11,8 @@ let businessListElement = null;
 let currentSelectedIndex = -1;
 let businessPanel = null;
 let toggleButton = null;
+var categoryFilterHandler = null;
+var filterMapTimeout = null;
 
 /**
  * Initialize dropdown toggle functionality
@@ -235,6 +237,16 @@ function initializeCategoryFilter(advertisers) {
     var filterSelect = document.getElementById('category-filter');
     if (!filterSelect) return;
 
+    // Remove previous handler if re-initialized
+    if (categoryFilterHandler) {
+        filterSelect.removeEventListener('change', categoryFilterHandler);
+    }
+
+    // Clear dynamically-added options (keep the default "All Categories")
+    while (filterSelect.options.length > 1) {
+        filterSelect.remove(1);
+    }
+
     // Extract unique non-empty categories
     var categories = [];
     var seen = {};
@@ -261,10 +273,11 @@ function initializeCategoryFilter(advertisers) {
     // Show the filter
     filterSelect.style.display = '';
 
-    // Wire up change handler
-    filterSelect.addEventListener('change', function() {
+    // Wire up change handler (stored for cleanup on re-init)
+    categoryFilterHandler = function() {
         applyFilter(this.value);
-    });
+    };
+    filterSelect.addEventListener('change', categoryFilterHandler);
 }
 
 /**
@@ -273,22 +286,45 @@ function initializeCategoryFilter(advertisers) {
  * @param {string} category - Category to filter by, or empty string for all
  */
 function applyFilter(category) {
+    var map = getMap();
+    if (!map) return;
+
     var markers = getAllMarkers();
 
-    // Filter map markers (always show chamber marker)
+    // Close any open popups before filtering
+    closeAllPopups();
+
+    // Group markers by unique marker instance to handle co-located businesses.
+    // Multiple advertisers at the same lat/lng share one marker DOM element,
+    // so we must determine visibility per unique marker, not per advertiser.
+    var markerGroups = new Map();
     markers.forEach(function(markerData) {
-        var advCategory = (markerData.advertiser.category && markerData.advertiser.category.trim()) || '';
-        if (category === '' || advCategory === category || isChamber(markerData.advertiser)) {
-            showMarker(markerData);
-        } else {
-            hideMarker(markerData);
+        if (!markerData || !markerData.marker) return;
+        var marker = markerData.marker;
+        if (!markerGroups.has(marker)) {
+            markerGroups.set(marker, []);
         }
+        markerGroups.get(marker).push(markerData);
+    });
+
+    // For each unique marker, show if ANY advertiser at that location passes
+    markerGroups.forEach(function(group) {
+        var anyVisible = group.some(function(markerData) {
+            var advCategory = (markerData.advertiser.category && markerData.advertiser.category.trim()) || '';
+            return category === '_all' || advCategory === category || isChamber(markerData.advertiser);
+        });
+
+        // Update visibility flag on all entries and DOM once per shared element
+        group.forEach(function(markerData) {
+            markerData.visible = anyVisible;
+        });
+        group[0].element.style.display = anyVisible ? 'block' : 'none';
     });
 
     // Filter business list items and category headings (always show chamber)
     var items = businessListElement.querySelectorAll('.business-list-item, .category-heading');
     items.forEach(function(item) {
-        if (category === '') {
+        if (category === '_all') {
             // Show all
             item.style.display = '';
         } else if (item.dataset.category === '_chamber') {
@@ -303,26 +339,45 @@ function applyFilter(category) {
         }
     });
 
-    // Fit map bounds to visible markers or reset to default view
-    if (category !== '') {
-        var bounds = new mapboxgl.LngLatBounds();
-        markers.forEach(function(markerData) {
-            if (markerData.visible) {
-                bounds.extend(markerData.marker.getLngLat());
-            }
-        });
-        if (!bounds.isEmpty()) {
-            var map = getMap();
-            map.fitBounds(bounds, { padding: 60, maxZoom: 15, duration: 1000 });
-        }
-    } else {
-        var map = getMap();
-        map.flyTo({
-            center: CONFIG.mapbox.center,
-            zoom: CONFIG.mapbox.zoom,
-            duration: 1000
-        });
+    // Debounce map animation to prevent competing flyTo/fitBounds on rapid changes
+    if (filterMapTimeout) {
+        clearTimeout(filterMapTimeout);
     }
+    filterMapTimeout = setTimeout(function() {
+        filterMapTimeout = null;
+
+        if (category !== '_all') {
+            var bounds = new mapboxgl.LngLatBounds();
+            var pointCount = 0;
+            markers.forEach(function(markerData) {
+                if (markerData.visible) {
+                    bounds.extend(markerData.marker.getLngLat());
+                    pointCount++;
+                }
+            });
+
+            if (pointCount > 0 && !bounds.isEmpty()) {
+                var ne = bounds.getNorthEast();
+                var sw = bounds.getSouthWest();
+                if (ne.lng === sw.lng && ne.lat === sw.lat) {
+                    // All visible markers at same point — flyTo instead of fitBounds
+                    map.flyTo({
+                        center: bounds.getCenter(),
+                        zoom: 15,
+                        duration: 1000
+                    });
+                } else {
+                    map.fitBounds(bounds, { padding: 60, maxZoom: 15, duration: 1000 });
+                }
+            }
+        } else {
+            map.flyTo({
+                center: CONFIG.mapbox.center,
+                zoom: CONFIG.mapbox.zoom,
+                duration: 1000
+            });
+        }
+    }, 150);
 }
 
 /**

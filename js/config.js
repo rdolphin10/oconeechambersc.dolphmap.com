@@ -32,8 +32,23 @@ const CONFIG = {
         }
     },
     "banners": {
-        "banner1": null,
-        "banner2": [],
+        "banner1": {
+            "image": "assets/banners/premium/VisitOconee.jpg",
+            "link": "",
+            "alt": "Visit Oconee"
+        },
+        "banner2": [
+            {
+                "image": "assets/banners/slideshow/MyUpstateHome.jpg",
+                "link": "",
+                "alt": "My Upstate Home"
+            },
+            {
+                "image": "assets/banners/slideshow/KeoweeMarina.jpg",
+                "link": "",
+                "alt": "Keowee Marina"
+            }
+        ],
         "slideshow": {
             "interval": 5000,
             "fadeTransition": 1000

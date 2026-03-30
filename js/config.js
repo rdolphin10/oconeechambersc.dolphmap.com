@@ -34,18 +34,18 @@ const CONFIG = {
     "banners": {
         "banner1": {
             "image": "assets/banners/premium/VisitOconee.jpg",
-            "link": "",
+            "link": "https://www.visitoconeesc.com",
             "alt": "Visit Oconee"
         },
         "banner2": [
             {
                 "image": "assets/banners/slideshow/MyUpstateHome.jpg",
-                "link": "",
+                "link": "https://www.myupstatehome.com",
                 "alt": "My Upstate Home"
             },
             {
                 "image": "assets/banners/slideshow/KeoweeMarina.jpg",
-                "link": "",
+                "link": "https://www.keoweemarina.com",
                 "alt": "Keowee Marina"
             }
         ],

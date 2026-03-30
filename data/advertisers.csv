@@ -2,13 +2,13 @@ name,address,city,state,zip,phone,website,category,description,latitude,longitud
 Oconee County Chamber of Commerce,2 Leas Courtyard Dr,Seneca,SC,29672,(864) 882-2097,https://oconeechambersc.org/,Chamber of Commerce,Serving the businesses and communities of Oconee County including Seneca Walhalla and Westminster since 2017,34.6857,-82.9532,,,none
 Oconee County PRT,1099 South Cove Road,Seneca,SC,29672,(864) 364-5603,,"Parks & Recreation","Oconee County Parks, Recreation & Tourism",34.71307,-82.96339,,,premium
 Visit Oconee,224 East Main Street,Walhalla,SC,29691,(864) 723-0347,,Tourism,Oconee County tourism and visitor information,34.7643,-83.0633,,assets/banners/premium/VisitOconee.jpg,premium
-My Upstate Home,310 E North 2nd Street,Seneca,SC,29678,(864) 777-4663,,Real Estate,Upstate South Carolina real estate services,34.68709,-82.95073,,assets/banners/slideshow/MyUpstateHome.jpg,slideshow
+My Upstate Home,310 E North 2nd Street,Seneca,SC,29678,(864) 777-4663,,Real Estate,Upstate South Carolina real estate services,34.68709,-82.95073,assets/popup-images/MyUpstateHome.jpg,assets/banners/slideshow/MyUpstateHome.jpg,slideshow
 Blue Ridge Arts Center,11 E South 2nd Street,Seneca,SC,29672,(508) 963-4959,,Arts & Culture,Community arts center in Seneca,34.682118,-82.954328,,,slideshow
-Brews on the Alley,109 Ram Cat Alley,Seneca,SC,29678,(864) 973-8923,,Restaurant / Brewery,Local brewery and restaurant in downtown Seneca,34.685036,-82.954268,,,none
-Keller Williams Oconee,134 E Main St,Westminster,SC,29693,(864) 985-2540,,Real Estate,Real estate services in Oconee County,34.66545,-83.09635,,,none
-Keowee Marina,150 Keowee Marina Dr,Seneca,SC,29672,(864) 882-2047,,Marina,Full-service marina on Lake Keowee,34.71142,-82.94795,,assets/banners/slideshow/KeoweeMarina.jpg,slideshow
+Brews on the Alley,109 Ram Cat Alley,Seneca,SC,29678,(864) 973-8923,,Restaurant / Brewery,Local brewery and restaurant in downtown Seneca,34.685036,-82.954268,assets/popup-images/BrewsontheAlley.jpg,,none
+Keller Williams Oconee,134 E Main St,Westminster,SC,29693,(864) 985-2540,,Real Estate,Real estate services in Oconee County,34.66545,-83.09635,assets/popup-images/KellerWilliamsOconee.jpg,,none
+Keowee Marina,150 Keowee Marina Dr,Seneca,SC,29672,(864) 882-2047,,Marina,Full-service marina on Lake Keowee,34.71142,-82.94795,assets/popup-images/KeoweeMarina.jpg,assets/banners/slideshow/KeoweeMarina.jpg,slideshow
 Foothills Area YMCA,370 Memorial Drive,Seneca,SC,29672,(864) 572-9622,,Fitness / Community,Community YMCA serving the Foothills area,34.693248,-82.991067,,,slideshow
-"Carolina Home Real Estate, Inc",102 N. Fairplay Street,Seneca,SC,29678,(864) 324-1193,,Real Estate,Real estate services in the Upstate,34.6844,-82.95456,,,none
+"Carolina Home Real Estate, Inc",102 N. Fairplay Street,Seneca,SC,29678,(864) 324-1193,,Real Estate,Real estate services in the Upstate,34.6844,-82.95456,assets/popup-images/CarolinaHomeRealEstate.jpg,,none
 The Mortgage Gurus,10 Accountants Circle,Seneca,SC,29678,(864) 844-5008,,Mortgage / Finance,Mortgage lending services,34.696357,-82.964323,,,slideshow
 Southern Home Center,815 W. Oak Highway,Westminster,SC,29693,(864) 364-7981,,Home Improvement,Home improvement and building supplies,34.64912,-83.07732,,,slideshow
-Clemson Vacation Rentals,"10871 Clemson Blvd, Suite B",Seneca,SC,29672,(864) 614-1547,,Vacation Rentals,Vacation rental property management,34.697333,-82.881822,,,slideshow
+Clemson Vacation Rentals,"10871 Clemson Blvd, Suite B",Seneca,SC,29672,(864) 614-1547,,Vacation Rentals,Vacation rental property management,34.697333,-82.881822,assets/popup-images/ClemsonVacationRentals.jpg,,slideshow

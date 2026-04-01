@@ -47,6 +47,16 @@ const CONFIG = {
                 "image": "assets/banners/slideshow/KeoweeMarina.jpg",
                 "link": "https://www.keoweemarina.com",
                 "alt": "Keowee Marina"
+            },
+            {
+                "image": "assets/banners/slideshow/TheMortgageGurus.jpg",
+                "link": "https://www.themortgagegurus.com",
+                "alt": "The Mortgage Gurus"
+            },
+            {
+                "image": "assets/banners/slideshow/SouthernHomeCenter.jpg",
+                "link": "https://www.southernhomecenter.com",
+                "alt": "Southern Home Center"
             }
         ],
         "slideshow": {

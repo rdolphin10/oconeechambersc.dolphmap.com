@@ -44,6 +44,11 @@ const CONFIG = {
                 "alt": "My Upstate Home"
             },
             {
+                "image": "assets/banners/slideshow/BlueRidgeArtsCenter.jpg",
+                "link": "https://www.blueridgeartscenter.com",
+                "alt": "Blue Ridge Arts Center"
+            },
+            {
                 "image": "assets/banners/slideshow/KeoweeMarina.jpg",
                 "link": "https://www.keoweemarina.com",
                 "alt": "Keowee Marina"
@@ -57,6 +62,11 @@ const CONFIG = {
                 "image": "assets/banners/slideshow/SouthernHomeCenter.jpg",
                 "link": "https://www.southernhomecenter.com",
                 "alt": "Southern Home Center"
+            },
+            {
+                "image": "assets/banners/slideshow/ClemsonVacationRentals.jpg",
+                "link": "https://www.clemsonvacationrentals.com",
+                "alt": "Clemson Vacation Rentals"
             }
         ],
         "slideshow": {

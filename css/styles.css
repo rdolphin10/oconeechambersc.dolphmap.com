@@ -125,9 +125,19 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Banner 1 - Top */
+/* Banner 1 - Top (Premium) */
 .banner1-container {
     max-width: 850px;
+    background: var(--color-bg-primary, #ffffff);
+    border: 2px solid var(--color-border, #dddddd);
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.banner1-container:hover {
+    border-color: var(--color-primary, #1a5276);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 /* Banner 2 (Slideshow) - Below Banner 1 */

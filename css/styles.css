@@ -125,19 +125,21 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Banner 1 - Top (Premium) */
+/* Banner 1 - Top (Premium) — styled to match chamber callout logo */
 .banner1-container {
     max-width: 850px;
-    background: var(--color-bg-primary, #ffffff);
-    border: 2px solid var(--color-border, #dddddd);
+    overflow: visible;
+    background: #fff;
+    border: 2px solid var(--color-primary, #1a5276);
     border-radius: 6px;
-    padding: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.banner1-container:hover {
-    border-color: var(--color-primary, #1a5276);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+/* Remove inner shadow/radius on premium banner since container provides the frame */
+.banner1-container .banner-img {
+    border-radius: 4px;
+    box-shadow: none;
 }
 
 /* Banner 2 (Slideshow) - Below Banner 1 */

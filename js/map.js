@@ -216,6 +216,13 @@ function initializeMap() {
         return;
     }
 
+    // Check for WebGL support — required by Mapbox GL JS
+    // In-app browsers (e.g. Google app) often lack WebGL support
+    if (!mapboxgl.supported()) {
+        showBrowserFallback();
+        return;
+    }
+
     // Check if access token is configured
     if (!CONFIG.mapbox.accessToken || CONFIG.mapbox.accessToken === 'YOUR_MAPBOX_ACCESS_TOKEN_HERE') {
         showError('Mapbox access token is not configured. Please update config.js with your token.');
@@ -249,6 +256,9 @@ function initializeMap() {
         });
         map.addControl(scale, 'bottom-right');
 
+        // Track whether tiles have successfully rendered
+        let tilesLoaded = false;
+
         // Event: Map has finished loading
         map.on('load', function() {
             // Inspect map layers (for debugging - shows all available layers)
@@ -264,21 +274,128 @@ function initializeMap() {
             onMapLoaded();
         });
 
+        // Track successful tile rendering
+        map.on('data', function(e) {
+            if (e.dataType === 'source' && !tilesLoaded) {
+                tilesLoaded = true;
+            }
+        });
+
         // Event: Map style has finished loading
         map.on('style.load', function() {
-            // Style loaded
+            // After style loads, give tiles a window to render.
+            // If nothing renders, the browser likely has partial WebGL support
+            // (common in in-app browsers like Google, Facebook, Instagram).
+            setTimeout(function() {
+                if (!tilesLoaded) {
+                    console.warn('Map tiles failed to render — possible WebGL issue');
+                    showBrowserFallback();
+                }
+            }, 5000);
         });
 
         // Event: Error loading map
+        // Mapbox fires error events for transient tile failures, network blips, and
+        // WebGL context issues. Only surface persistent failures to the user.
+        let errorCount = 0;
         map.on('error', function(e) {
             console.error('Map error:', e);
-            showError('Error loading map. Please check your configuration.');
+            errorCount++;
+            // If many errors fire quickly and no tiles loaded, likely a real problem
+            if (errorCount >= 5 && !tilesLoaded) {
+                showBrowserFallback();
+            }
         });
 
     } catch (error) {
         console.error('Error initializing map:', error);
         showError('Failed to initialize map. Please check the console for details.');
     }
+}
+
+/**
+ * Show a user-friendly fallback when the browser doesn't support WebGL
+ *
+ * Common in in-app browsers (Google app, Facebook, Instagram, etc.)
+ * that use a limited WebView instead of a full browser engine.
+ */
+function showBrowserFallback() {
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) return;
+
+    // Get the current page URL for the copy/open buttons
+    const pageUrl = window.location.href.split('?')[0];
+
+    // Detect platform for tailored instructions
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    let browserTip = 'Tap ⋮ menu → "Open in Browser"';
+    if (isIOS) {
+        browserTip = 'Tap the Safari icon or "Open in Safari" from the share menu';
+    } else if (isAndroid) {
+        browserTip = 'Tap ⋮ → "Open in Chrome" or "Open in Browser"';
+    }
+
+    mapContainer.innerHTML = `
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 32px 24px;
+            text-align: center;
+            background: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        ">
+            <div style="font-size: 48px; margin-bottom: 16px;">🗺️</div>
+            <h2 style="margin: 0 0 12px; font-size: 20px; color: #1a1a2e;">
+                Map Not Displaying?
+            </h2>
+            <p style="margin: 0 0 20px; font-size: 15px; color: #555; max-width: 320px; line-height: 1.5;">
+                This interactive map works best in <strong>Chrome</strong> or <strong>Safari</strong>. If you're viewing this from a search result or app, open it in your full browser.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px;">
+                <button onclick="
+                    navigator.clipboard.writeText('${pageUrl}').then(function() {
+                        this.textContent = 'Link Copied!';
+                        this.style.background = '#28a745';
+                    }.bind(this)).catch(function() {
+                        window.prompt('Copy this link:', '${pageUrl}');
+                    });
+                " style="
+                    padding: 14px 24px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: white;
+                    background: #007bff;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: transparent;
+                ">
+                    Copy Link to Clipboard
+                </button>
+                <button onclick="window.location.reload();" style="
+                    padding: 12px 24px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #007bff;
+                    background: white;
+                    border: 2px solid #007bff;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    -webkit-tap-highlight-color: transparent;
+                ">
+                    Try Reloading
+                </button>
+            </div>
+            <p style="margin: 16px 0 0; font-size: 13px; color: #888; max-width: 280px;">
+                ${browserTip}
+            </p>
+        </div>
+    `;
 }
 
 /**

@@ -67,6 +67,46 @@ const CONFIG = {
                 "image": "assets/banners/slideshow/ClemsonVacationRentals.jpg",
                 "link": "https://www.clemsonvacationrentals.com",
                 "alt": "Clemson Vacation Rentals"
+            },
+            {
+                "image": "assets/banners/slideshow/ButterflyRidge.jpg",
+                "link": "https://www.butterflyridgemountainretreat.com",
+                "alt": "Butterfly Ridge Mountain Retreat"
+            },
+            {
+                "image": "assets/banners/slideshow/TriCountyTech.jpg",
+                "link": "https://www.tctc.edu",
+                "alt": "Tri County Technical College"
+            },
+            {
+                "image": "assets/banners/slideshow/TruByHilton.jpg",
+                "link": "https://www.hilton.com",
+                "alt": "Tru by Hilton Seneca Clemson"
+            },
+            {
+                "image": "assets/banners/slideshow/StateFarm.jpg",
+                "link": "https://sfseneca.com",
+                "alt": "State Farm - Jon Aprile Agency"
+            },
+            {
+                "image": "assets/banners/slideshow/SmuckerPatio.jpg",
+                "link": "https://smuckerpatioliving.com",
+                "alt": "Smucker Patio Living"
+            },
+            {
+                "image": "assets/banners/slideshow/SouthernShade.jpg",
+                "link": "https://www.southernshadeexteriors.com",
+                "alt": "Southern Shade Exteriors"
+            },
+            {
+                "image": "assets/banners/slideshow/ComfortInn.jpg",
+                "link": "https://www.comfortinnclemsonsc.com",
+                "alt": "Comfort Inn & Suites Clemson"
+            },
+            {
+                "image": "assets/banners/slideshow/JCSports.jpg",
+                "link": "https://www.skijcsports.com",
+                "alt": "JC Sports"
             }
         ],
         "slideshow": {

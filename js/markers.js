@@ -181,7 +181,7 @@ function createMarker(advertisers, map) {
         anchor: 'bottom',     // Anchor popup at bottom (appears above marker)
         closeButton: true,    // Show X button
         closeOnClick: false,  // Don't close when clicking map
-        maxWidth: '360px'     // Balanced width
+        maxWidth: '480px'     // Wide enough to read ad text clearly
     }).setHTML(popupHTML);
 
     // Check if this is the Chamber of Commerce (use building icon)

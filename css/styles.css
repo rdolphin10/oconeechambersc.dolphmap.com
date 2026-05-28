@@ -483,7 +483,7 @@ body {
 .mapboxgl-popup-content {
     padding: 0;
     border-radius: 8px;
-    max-width: 360px;
+    max-width: 480px;
     overflow: hidden;
 }
 
@@ -504,10 +504,8 @@ body {
     max-height: 400px; /* Will be dynamically adjusted based on available space */
     display: block;
     object-fit: contain;
-    image-rendering: -webkit-optimize-contrast; /* Sharper downscaling in WebKit/Chrome */
-    image-rendering: crisp-edges;               /* Sharper in Firefox */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: auto; /* Smooth scaling for photos */
+    -ms-interpolation-mode: bicubic;
 }
 
 /* Popup content area - add padding to text elements */

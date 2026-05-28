@@ -55,7 +55,7 @@ const CONFIG = {
             },
             {
                 "image": "assets/banners/slideshow/TheMortgageGurus.jpg",
-                "link": "https://www.themortgagegurus.com",
+                "link": "https://www.mortgagegurus.net",
                 "alt": "The Mortgage Gurus"
             },
             {

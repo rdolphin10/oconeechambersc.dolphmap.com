@@ -501,11 +501,13 @@ body {
 .business-card-img {
     width: 100%;
     height: auto;
-    max-height: 400px; /* Will be dynamically adjusted based on available space */
+    max-height: 600px; /* Fallback for browsers without min() support */
+    max-height: min(55vh, 600px); /* Tall print ads render larger; still fits viewport */
     display: block;
     object-fit: contain;
     image-rendering: auto; /* Smooth scaling for photos */
     -ms-interpolation-mode: bicubic;
+    cursor: zoom-in; /* Clicking opens the full-screen lightbox */
 }
 
 /* Popup content area - add padding to text elements */
@@ -588,6 +590,85 @@ body {
 /* Make map canvas lower so it doesn't create stacking issues */
 .mapboxgl-canvas {
     z-index: 0 !important;
+}
+
+/* ========================================
+   IMAGE LIGHTBOX (full-screen ad viewer)
+   ======================================== */
+
+/* Overlay sits above everything, including popups (z-index 9999) */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 10010;
+}
+
+.lightbox-overlay.open {
+    display: block;
+}
+
+/* Scroll container — flex-centers the image when it fits */
+.lightbox-scroller {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lightbox-img {
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    cursor: zoom-in;
+}
+
+/* Zoomed state: natural resolution, scroll to pan.
+   display:block (not flex) so the top of a tall image stays reachable. */
+.lightbox-overlay.zoomed .lightbox-scroller {
+    display: block;
+    text-align: center;
+}
+
+.lightbox-overlay.zoomed .lightbox-img {
+    max-width: none;
+    max-height: none;
+    margin: 24px auto;
+    cursor: zoom-out;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: #333;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    z-index: 10020;
+}
+
+.lightbox-close:hover {
+    background: #fff;
 }
 
 /* ========================================

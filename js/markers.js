@@ -292,10 +292,16 @@ function createMarker(advertisers, map) {
         if (!popupEl) return;
 
         // Attach error handlers to popup images (no inline JS)
+        // Clicking an ad image opens it full-screen in the lightbox
         var cardImages = popupEl.querySelectorAll('.business-card-img');
         cardImages.forEach(function(img) {
             img.addEventListener('error', function() {
                 this.parentElement.style.display = 'none';
+            });
+            img.addEventListener('click', function() {
+                if (typeof openLightbox === 'function') {
+                    openLightbox(this.src, this.alt);
+                }
             });
         });
 
@@ -322,8 +328,18 @@ function createMarker(advertisers, map) {
         closeAllPopups();
         currentOpenPopup = popup;
 
-        // Wait for popup to open and render
-        waitForPopupAndEnsureVisible(popup, map);
+        // Smoothly center the pin, reserving space above for the popup
+        // (same padding the directory dropdown uses in focusOnMarker)
+        map.easeTo({
+            center: [longitude, latitude],
+            padding: getBannerPadding(),
+            duration: 600
+        });
+
+        // After the centering animation settles, verify the popup fits
+        setTimeout(function() {
+            waitForPopupAndEnsureVisible(popup, map);
+        }, 650);
     });
 
     // Track when popup is closed

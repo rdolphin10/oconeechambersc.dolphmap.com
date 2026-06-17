@@ -109,6 +109,16 @@ const CONFIG = {
                 "alt": "JC Sports"
             },
             {
+                "image": "assets/banners/slideshow/Trident.jpg",
+                "link": "https://www.tridentc2t.com",
+                "alt": "Trident Sea to Table"
+            },
+            {
+                "image": "assets/banners/slideshow/Pikes.jpg",
+                "link": "https://pikesseafoodsc.com",
+                "alt": "Pike's Seafood"
+            },
+            {
                 "image": "assets/banners/slideshow/UpstateInsurance.jpg",
                 "link": "https://www.upstateinsurance.com",
                 "alt": "Upstate Insurance"

@@ -107,6 +107,16 @@ const CONFIG = {
                 "image": "assets/banners/slideshow/JCSports.jpg",
                 "link": "https://www.skijcsports.com",
                 "alt": "JC Sports"
+            },
+            {
+                "image": "assets/banners/slideshow/UpstateInsurance.jpg",
+                "link": "https://www.upstateinsurance.com",
+                "alt": "Upstate Insurance"
+            },
+            {
+                "image": "assets/banners/slideshow/FoxwoodHills.jpg",
+                "link": "",
+                "alt": "Foxwood Hills"
             }
         ],
         "slideshow": {

@@ -127,6 +127,11 @@ const CONFIG = {
                 "image": "assets/banners/slideshow/FoxwoodHills.jpg",
                 "link": "",
                 "alt": "Foxwood Hills"
+            },
+            {
+                "image": "assets/banners/slideshow/KroegerMarine.jpg",
+                "link": "https://kroegermarine.com",
+                "alt": "Kroeger Marine"
             }
         ],
         "slideshow": {

@@ -125,7 +125,7 @@ const CONFIG = {
             },
             {
                 "image": "assets/banners/slideshow/FoxwoodHills.jpg",
-                "link": "",
+                "link": "https://www.foxwoodhills.net",
                 "alt": "Foxwood Hills"
             },
             {

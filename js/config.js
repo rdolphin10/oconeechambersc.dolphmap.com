@@ -251,10 +251,12 @@ const CONFIG = {
     },
     "chamberCallout": {
         "position": [
-            -82.9532,
-            34.715
+            -82.94855,
+            34.764789
         ],
-        "showAtZoom": 12
+        "logoWidth": 180,
+        "showAtZoom": 9.45,
+        "hideAtZoom": 11.15
     },
     "countyBorder": {
         "geojsonPath": "assets/oconee-county-boundary.geojson",

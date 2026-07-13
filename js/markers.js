@@ -189,18 +189,31 @@ function createMarker(advertisers, map) {
 
     let marker;
     if (isChamber) {
-        // Create custom building icon for Chamber (classic building with columns)
+        // Create custom building icon for Chamber — white circular badge with the
+        // Material Icons "account_balance" building (matches the Vercel platform look)
         // Uses createElementNS for SVG instead of innerHTML for security
         const chamberEl = document.createElement('div');
         chamberEl.className = 'chamber-marker';
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', '40');
-        svg.setAttribute('height', '40');
+        const svgNS = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttribute('width', '28');
+        svg.setAttribute('height', '28');
         svg.setAttribute('viewBox', '0 0 24 24');
-        svg.setAttribute('fill', '#1a5276');
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('d', 'M12 2L2 8v2h20V8L12 2zM4 12v8h3v-6h2v6h2v-6h2v6h2v-6h2v6h3v-8H4zM2 22h20v-2H2v2z');
-        svg.appendChild(path);
+        svg.setAttribute('fill', CONFIG.markers.defaultColor || '#1a5276');
+        [
+            ['rect', { x: '4', y: '10', width: '3', height: '7' }],
+            ['rect', { x: '10.5', y: '10', width: '3', height: '7' }],
+            ['rect', { x: '17', y: '10', width: '3', height: '7' }],
+            ['rect', { x: '2', y: '19', width: '20', height: '3' }],
+            ['polygon', { points: '12,1 2,6 2,8 22,8 22,6' }]
+        ].forEach(function(def) {
+            const shape = document.createElementNS(svgNS, def[0]);
+            const attrs = def[1];
+            for (const attr in attrs) {
+                shape.setAttribute(attr, attrs[attr]);
+            }
+            svg.appendChild(shape);
+        });
         chamberEl.appendChild(svg);
         chamberEl.style.cursor = 'pointer';
 
@@ -217,6 +230,7 @@ function createMarker(advertisers, map) {
             const calloutLng = CONFIG.chamberCallout.position[0];
             const calloutLat = CONFIG.chamberCallout.position[1];
             const showAtZoom = CONFIG.chamberCallout.showAtZoom || 12;
+            const hideAtZoom = CONFIG.chamberCallout.hideAtZoom || Infinity;
 
             // Connector line from callout to chamber marker
             map.addSource('chamber-callout-line', {
@@ -262,10 +276,10 @@ function createMarker(advertisers, map) {
                 .setLngLat([calloutLng, calloutLat])
                 .addTo(map);
 
-            // Show callout at configured zoom and above; hides when zoomed out
+            // Show callout within the configured zoom band (hideAtZoom optional)
             function updateCalloutVisibility() {
                 const zoom = map.getZoom();
-                if (zoom >= showAtZoom) {
+                if (zoom >= showAtZoom && zoom < hideAtZoom) {
                     calloutEl.style.display = 'block';
                     map.setLayoutProperty('chamber-callout-line', 'visibility', 'visible');
                 } else {

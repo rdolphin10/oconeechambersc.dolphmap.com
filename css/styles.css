@@ -475,6 +475,13 @@ body {
     scale: 1;
 }
 
+/* Client emblem image variant of the chamber marker */
+.chamber-marker-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
 /* Chamber callout logo over the lake */
 .chamber-callout {
     pointer-events: none;

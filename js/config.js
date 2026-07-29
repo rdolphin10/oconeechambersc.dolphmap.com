@@ -145,7 +145,8 @@ const CONFIG = {
     "markers": {
         "defaultColor": "#1a5276",
         "clusterEnabled": false,
-        "customIcon": null
+        "customIcon": null,
+        "chamberIcon": "assets/logos/chamber-marker.png"
     },
     "cityLabel": {
         "name": "OCONEE COUNTY",

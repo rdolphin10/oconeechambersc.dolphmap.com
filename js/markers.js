@@ -194,27 +194,36 @@ function createMarker(advertisers, map) {
         // Uses createElementNS for SVG instead of innerHTML for security
         const chamberEl = document.createElement('div');
         chamberEl.className = 'chamber-marker';
-        const svgNS = 'http://www.w3.org/2000/svg';
-        const svg = document.createElementNS(svgNS, 'svg');
-        svg.setAttribute('width', '28');
-        svg.setAttribute('height', '28');
-        svg.setAttribute('viewBox', '0 0 24 24');
-        svg.setAttribute('fill', CONFIG.markers.defaultColor || '#1a5276');
-        [
-            ['rect', { x: '4', y: '10', width: '3', height: '7' }],
-            ['rect', { x: '10.5', y: '10', width: '3', height: '7' }],
-            ['rect', { x: '17', y: '10', width: '3', height: '7' }],
-            ['rect', { x: '2', y: '19', width: '20', height: '3' }],
-            ['polygon', { points: '12,1 2,6 2,8 22,8 22,6' }]
-        ].forEach(function(def) {
-            const shape = document.createElementNS(svgNS, def[0]);
-            const attrs = def[1];
-            for (const attr in attrs) {
-                shape.setAttribute(attr, attrs[attr]);
-            }
-            svg.appendChild(shape);
-        });
-        chamberEl.appendChild(svg);
+        if (CONFIG.markers && CONFIG.markers.chamberIcon) {
+            // Client-specific emblem image inside the badge (e.g. cropped from the chamber logo)
+            const iconImg = document.createElement('img');
+            iconImg.setAttribute('src', CONFIG.markers.chamberIcon);
+            iconImg.setAttribute('alt', (CONFIG.client && CONFIG.client.logoAlt) || 'Chamber');
+            iconImg.className = 'chamber-marker-img';
+            chamberEl.appendChild(iconImg);
+        } else {
+            const svgNS = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(svgNS, 'svg');
+            svg.setAttribute('width', '28');
+            svg.setAttribute('height', '28');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('fill', CONFIG.markers.defaultColor || '#1a5276');
+            [
+                ['rect', { x: '4', y: '10', width: '3', height: '7' }],
+                ['rect', { x: '10.5', y: '10', width: '3', height: '7' }],
+                ['rect', { x: '17', y: '10', width: '3', height: '7' }],
+                ['rect', { x: '2', y: '19', width: '20', height: '3' }],
+                ['polygon', { points: '12,1 2,6 2,8 22,8 22,6' }]
+            ].forEach(function(def) {
+                const shape = document.createElementNS(svgNS, def[0]);
+                const attrs = def[1];
+                for (const attr in attrs) {
+                    shape.setAttribute(attr, attrs[attr]);
+                }
+                svg.appendChild(shape);
+            });
+            chamberEl.appendChild(svg);
+        }
         chamberEl.style.cursor = 'pointer';
 
         marker = new mapboxgl.Marker({

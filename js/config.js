@@ -12,7 +12,7 @@ const CONFIG = {
             -82.985,
             34.722
         ],
-        "zoom": 11,
+        "zoom": 10.9,
         "minZoom": 3,
         "maxZoom": 18
     },

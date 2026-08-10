@@ -299,6 +299,25 @@ function createMarker(advertisers, map) {
             map.on('zoom', updateCalloutVisibility);
             updateCalloutVisibility();
         }
+    } else if (advertisers.some(function(a) { return a.marker_logo && a.marker_logo.trim(); })) {
+        // Advertiser with its own marker artwork (marker_logo CSV column) —
+        // brand badge in place of the default pin, like the chamber emblem
+        const logoAdv = advertisers.find(function(a) { return a.marker_logo && a.marker_logo.trim(); });
+        const logoEl = document.createElement('div');
+        logoEl.className = 'logo-marker';
+        const logoImg = document.createElement('img');
+        logoImg.setAttribute('src', logoAdv.marker_logo.trim());
+        logoImg.setAttribute('alt', logoAdv.name || 'Advertiser');
+        logoEl.appendChild(logoImg);
+        logoEl.style.cursor = 'pointer';
+
+        marker = new mapboxgl.Marker({
+            element: logoEl,
+            anchor: 'bottom'
+        })
+            .setLngLat([longitude, latitude])
+            .setPopup(popup)
+            .addTo(map);
     } else {
         // Create standard marker with navy blue color
         marker = new mapboxgl.Marker({

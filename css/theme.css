@@ -275,3 +275,47 @@ body {
  *   --color-primary: #6b46c1;
  *   --color-secondary: #f6ad55;
  */
+
+/* ========================================
+   OCONEE LAYOUT OVERRIDES
+   The chamber logo already appears on the map via the callout (with the
+   connecting line), so the fixed top-left corner logo card is redundant —
+   hide it and move the Interactive Directory up into its place.
+   Per chamber request (Marsha, Jul 29 2026).
+   ======================================== */
+
+.chamber-logo-container {
+    display: none;
+}
+
+.advertisers-toggle {
+    top: 10px;
+}
+
+.business-panel {
+    top: 60px;
+}
+
+/* Tablet keeps fixed positioning (core sets 80px/130px there) */
+@media (max-width: 1100px) and (min-width: 751px) {
+    .advertisers-toggle {
+        top: 10px;
+    }
+
+    .business-panel {
+        top: 60px;
+    }
+}
+
+/* Landscape phones (core sets 55px/95px there) */
+@media (max-width: 900px) and (orientation: landscape) {
+    .advertisers-toggle {
+        top: 5px;
+    }
+
+    .business-panel {
+        top: 45px;
+    }
+}
+
+/* Mobile portrait uses static flow — hiding the logo is enough */

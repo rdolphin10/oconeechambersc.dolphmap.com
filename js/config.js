@@ -9,10 +9,10 @@ const CONFIG = {
         "accessToken": "pk.eyJ1IjoicnlhbmRvbHBoanIiLCJhIjoiY21sOHI2OXRvMGE2ejNtcTMyajh0bWJtNCJ9.fDd6RAIarBzArdbZu8gfCA",
         "style": "mapbox://styles/mapbox/streets-v12",
         "center": [
-            -83.075342,
-            34.829064
+            -83.0163,
+            34.7276
         ],
-        "zoom": 9.46,
+        "zoom": 9.85,
         "minZoom": 3,
         "maxZoom": 18
     },
@@ -109,6 +109,16 @@ const CONFIG = {
                 "alt": "JC Sports"
             },
             {
+                "image": "assets/banners/slideshow/DollysRoofing.jpg",
+                "link": "https://dollysroofing.com",
+                "alt": "Dolly's Roofing"
+            },
+            {
+                "image": "assets/banners/slideshow/EdwardJones.jpg",
+                "link": "https://www.edwardjones.com/us-en/financial-advisor/sharon-m-mack",
+                "alt": "Edward Jones"
+            },
+            {
                 "image": "assets/banners/slideshow/Trident.jpg",
                 "link": "https://www.tridentc2t.com",
                 "alt": "Trident Sea to Table"
@@ -127,6 +137,26 @@ const CONFIG = {
                 "image": "assets/banners/slideshow/FoxwoodHills.jpg",
                 "link": "https://www.foxwoodhills.net",
                 "alt": "Foxwood Hills"
+            },
+            {
+                "image": "assets/banners/slideshow/SouthernOakPM.jpg",
+                "link": "https://www.southernoakpropertysc.com",
+                "alt": "Southern Oak Property"
+            },
+            {
+                "image": "assets/banners/slideshow/WaterSportsCentral.jpg",
+                "link": "https://www.watersportscentral.com",
+                "alt": "Water Sports Central"
+            },
+            {
+                "image": "assets/banners/slideshow/CityofWalhalla.jpg",
+                "link": "https://www.cityofwalhalla.com",
+                "alt": "City of Walhalla"
+            },
+            {
+                "image": "assets/banners/slideshow/TownofWestUnion.jpg",
+                "link": "https://www.townofwestunion.com",
+                "alt": "Town of West Union"
             },
             {
                 "image": "assets/banners/slideshow/KroegerMarine.jpg",

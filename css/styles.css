@@ -482,6 +482,26 @@ body {
     object-fit: contain;
 }
 
+/* Advertiser with its own marker artwork (marker_logo CSV column) —
+   brand badge replaces the default pin; no bounce (that targets svg pins) */
+.logo-marker {
+    width: 54px;
+    z-index: 2;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
+}
+
+.logo-marker img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.18s ease;
+    transform-origin: center bottom;
+}
+
+.logo-marker:hover img {
+    transform: scale(1.1);
+}
+
 /* Chamber callout logo over the lake */
 .chamber-callout {
     pointer-events: none;

@@ -9,10 +9,10 @@ const CONFIG = {
         "accessToken": "pk.eyJ1IjoicnlhbmRvbHBoanIiLCJhIjoiY21sOHI2OXRvMGE2ejNtcTMyajh0bWJtNCJ9.fDd6RAIarBzArdbZu8gfCA",
         "style": "mapbox://styles/mapbox/streets-v12",
         "center": [
-            -83.0163,
-            34.7276
+            -82.985,
+            34.722
         ],
-        "zoom": 9.85,
+        "zoom": 10.4,
         "minZoom": 3,
         "maxZoom": 18
     },

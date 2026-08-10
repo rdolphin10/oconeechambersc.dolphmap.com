@@ -210,7 +210,7 @@ const CONFIG = {
                 "name": "WALHALLA",
                 "position": [
                     -83.0638,
-                    34.7648
+                    34.7495
                 ],
                 "fontSize": "14px",
                 "hideAtZoom": 14

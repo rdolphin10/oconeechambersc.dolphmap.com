@@ -181,8 +181,8 @@ const CONFIG = {
     "cityLabel": {
         "name": "OCONEE COUNTY",
         "position": [
-            -83.0638,
-            34.79
+            -83.02,
+            34.645
         ],
         "hideFromDefaultLabels": [
             "Seneca",

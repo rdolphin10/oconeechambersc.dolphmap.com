@@ -261,8 +261,11 @@ function initializeMap() {
 
         // Event: Map has finished loading
         map.on('load', function() {
-            // Inspect map layers (for debugging - shows all available layers)
-            if (typeof inspectMapLayers === 'function') {
+            // Inspect map layers — debugging aid only. It logs every style layer
+            // (hundreds of console lines), so it is opt-in via ?debug=layers
+            // rather than running on every production page load.
+            const debugLayers = new URLSearchParams(window.location.search).get('debug') === 'layers';
+            if (debugLayers && typeof inspectMapLayers === 'function') {
                 inspectMapLayers(map);
             }
 

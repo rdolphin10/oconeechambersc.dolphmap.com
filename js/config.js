@@ -100,7 +100,7 @@ const CONFIG = {
             },
             {
                 "image": "assets/banners/slideshow/ComfortInn.jpg",
-                "link": "https://www.comfortinnclemsonsc.com",
+                "link": "https://www.choicehotels.com/sc086",
                 "alt": "Comfort Inn & Suites Clemson"
             },
             {
